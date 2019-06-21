@@ -9,7 +9,7 @@ import reactor.core.publisher.Flux;
 public class MoviesService {
 
     public Flux<Movie> getAllMoviesWithDetailsBySpringDataR2dbc() {
-        String query = "select * from movies_metadata";
+        String query = "SELECT * FROM movies_metadata where LANG like 'de'";
         return R2dbcConnection.getDatabaseClient().execute().sql(query).as(Movie.class).fetch().all();
     }
 

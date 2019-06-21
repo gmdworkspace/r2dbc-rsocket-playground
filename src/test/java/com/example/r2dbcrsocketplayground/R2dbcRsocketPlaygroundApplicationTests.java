@@ -4,13 +4,15 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.time.Duration;
+
 public class R2dbcRsocketPlaygroundApplicationTests {
 
-	private static RsocketServer server;
+	private static MockServer server;
 
 	@BeforeClass
 	public static void setUpClass() {
-		server = new RsocketServer();
+		server = new MockServer();
 	}
 
 	@AfterClass
@@ -23,7 +25,7 @@ public class R2dbcRsocketPlaygroundApplicationTests {
 
 		MockClient client = new MockClient();
 
-		System.out.println("Result:" + client.getDataStream().blockFirst());
+		System.out.println("Result:" + client.getDataStream().blockLast(Duration.ofSeconds(30)));
 
 	}
 

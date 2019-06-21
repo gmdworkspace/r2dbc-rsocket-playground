@@ -7,15 +7,15 @@ import io.rsocket.transport.netty.client.TcpClientTransport;
 import io.rsocket.util.DefaultPayload;
 import reactor.core.publisher.Flux;
 
-import static com.example.r2dbcrsocketplayground.config.Constants.rsockerPort;
-
 public class MockClient {
 
     private final RSocket socket;
 
+    private static final int TEST_PORT = 8888;
+
     public MockClient() {
         this.socket = RSocketFactory.connect()
-                .transport(TcpClientTransport.create("localhost", rsockerPort))
+                .transport(TcpClientTransport.create("localhost", TEST_PORT))
                 .start()
                 .block();
     }
