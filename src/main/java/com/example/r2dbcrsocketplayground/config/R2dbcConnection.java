@@ -6,9 +6,7 @@ import io.r2dbc.mssql.MssqlConnectionFactory;
 import org.springframework.data.r2dbc.function.DatabaseClient;
 import reactor.core.publisher.Mono;
 
-import static com.example.r2dbcrsocketplayground.config.Constants.mssqlHost;
-import static com.example.r2dbcrsocketplayground.config.Constants.mssqlPassword;
-import static com.example.r2dbcrsocketplayground.config.Constants.mssqlUsername;
+import static com.example.r2dbcrsocketplayground.config.Constants.*;
 
 
 public class R2dbcConnection {
@@ -19,6 +17,7 @@ public class R2dbcConnection {
                 .host(mssqlHost)
                 .username(mssqlUsername)
                 .password(mssqlPassword)
+                .database(mssqlDbName)
                 .build();
 
         MssqlConnectionFactory factory = new MssqlConnectionFactory(configuration);
@@ -32,6 +31,7 @@ public class R2dbcConnection {
                 .host(mssqlHost)
                 .username(mssqlUsername)
                 .password(mssqlPassword)
+                .database(mssqlDbName)
                 .build();
 
         MssqlConnectionFactory factory = new MssqlConnectionFactory(configuration);

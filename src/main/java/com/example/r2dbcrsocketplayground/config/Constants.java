@@ -8,5 +8,7 @@ public class Constants {
 
     public static final String mssqlPassword = "MSSQL_PASSWORD";
 
+    public static final String mssqlDbName = "movies";
+
     public static final int rsockerPort = 9091;
 }
