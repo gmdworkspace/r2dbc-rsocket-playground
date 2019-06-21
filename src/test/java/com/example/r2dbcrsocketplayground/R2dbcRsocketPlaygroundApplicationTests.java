@@ -4,8 +4,6 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.time.Duration;
-
 public class R2dbcRsocketPlaygroundApplicationTests {
 
 	private static MockServer server;
@@ -25,8 +23,16 @@ public class R2dbcRsocketPlaygroundApplicationTests {
 
 		MockClient client = new MockClient();
 
-		System.out.println("Result:" + client.getDataStream().blockLast(Duration.ofSeconds(30)));
+		//Making it blockable for testing
+		Iterable<String> result = client.getDataStream().toIterable();
 
+		for(String movie: result) {
+			System.out.println("Result:" + movie);
+
+		}
+
+		//Exit
+		System.exit(0);
 	}
 
 }

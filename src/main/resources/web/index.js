@@ -1,15 +1,18 @@
 const {
 	RSocketClient,
 	Utf8Encoders,
+	MAX_STREAM_ID //Use this if you want to display all the streams on page load
 } = require('rsocket-core');
 const RSocketWebSocketClient = require('rsocket-websocket-client').default;
 
 function addMessage(message) {
-	var ul = document.getElementById("messages");
-	var li = document.createElement("li");
+	const ol = document.getElementById("messages");
+	const li = document.createElement("li");
 	li.appendChild(document.createTextNode(message));
-	ul.appendChild(li);
+	ol.appendChild(li);
 }
+
+let rSocketSubscription;
 
 function main() {
 	const url = 'ws://localhost:9091/ws';
@@ -31,24 +34,30 @@ function main() {
 	client.connect().subscribe({
 		onComplete: socket => {
 
-		socket.requestStream({
-		data: 'peace',
-		metadata: null,
-	}).subscribe({
-		onComplete: () => console.log('complete'),
+			socket.requestStream({
+				data: 'peace',
+				metadata: null,
+			}).subscribe({
+				onComplete: () => console.log('complete'),
+				onError: error => console.error(error),
+				onNext: payload => {
+					console.log(payload.data);
+					addMessage(payload.data);
+				},
+				onSubscribe: subscription => {
+					rSocketSubscription = subscription;
+					//Inital page load data
+					subscription.request(30);
+				},
+			});
+		},
 		onError: error => console.error(error),
-		onNext: payload => {
-		console.log(payload.data);
-		addMessage(payload.data);
-	},
-	onSubscribe: subscription => {
-		subscription.request(100);
-	},
-});
-},
-	onError: error => console.error(error),
-		onSubscribe: cancel => {/* call cancel() to abort */}
-});
+		onSubscribe: cancel => {/* call cancel() to abort */
+		}
+	});
 }
 
 document.addEventListener('DOMContentLoaded', main);
+document.getElementById('get-more').addEventListener('click', () => {
+	rSocketSubscription.request(100)
+});
