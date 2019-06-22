@@ -1,10 +1,15 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
+
+application {
+    mainClassName = 'com.example.r2dbcrsocketplayground.R2dbcRsocketPlaygroundApplication'
+}
 
 repositories {
     mavenCentral()

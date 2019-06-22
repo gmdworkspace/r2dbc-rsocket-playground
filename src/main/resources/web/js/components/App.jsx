@@ -22,7 +22,6 @@ class App extends React.Component {
 					onComplete: () => console.log('Complete'),
 					onError: error => console.error(error),
 					onNext: payload => {
-						// console.log(payload.data);
 						const newData = this.state.data;
 						newData.push(payload.data);
 						this.setState({data: newData});
