@@ -2,7 +2,7 @@
 
 Hola! this project holds a setup for creating a full stack application using R2DBC driver(for MSSQL) with RSocket protocol communication. On the frontend it's a node project with react for user interfaces.
 
-In this playground, We are going to develop a movies list page. The page is going to display initial 15 records and whenever you press show more it's going to fetch you back with 20 more records. You can visualize the data streaming all the way from database till your browser.
+In this playground, We are going to develop a page which lists movies with their ratings. This page is going to display initial 15 records and whenever you press show more it's going to fetch you back with 20 more records. You can visualize the data streaming all the way from database till your browser.
 
 ## Why R2DBC? 
 The traditional JDBC drivers are blocking in nature(synchronous) which has down sides on a highly scaled applications. R2DBC on other hand does reactive way for data communication with the databases. 
@@ -17,15 +17,15 @@ Check out more at http://rsocket.io
 
 ## Local Setup
 
-1. Run MSSQL server on your machine. Easy way is run the mssql on docker(https://hub.docker.com/r/microsoft/mssql-server-linux/)
+1. Run MSSQL server on your machine. Easy way is to run mssql server on docker(https://hub.docker.com/r/microsoft/mssql-server-linux/)
 
-2. Download the movies_metadata.csv and import the data into your database
+2. Download the movies_metadata.csv and import the data into your database.
 
 3. Configure database username, password and database name on Constants.java
 
 4. To start server do `gradle run` which will start rsocket server on port 9091.
 
-5. Go to src/main/resources/web and do `npm i && npm run dev` to start client on port 9092
+5. Go to src/main/resources/web and do `npm i && npm run dev` to start client on port 9092.
 
 6. Now go to the browser and hit `http://localhost:9092` to see it in action.
 
