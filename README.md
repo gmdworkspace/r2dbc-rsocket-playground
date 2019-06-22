@@ -8,7 +8,7 @@ The traditional JDBC drivers are blocking in nature(synchronous) which has down 
 We are going to use r2dbc-mssql driver to connect to MSSQL database.
 Check out more at https://r2dbc.io
 
-## What's Rsocket
+## What's Rsocket?
 To build a full stack application you may need backend interfaces to provide data to your frontends.
 Rsocket is protocol which uses transports like TCP/HTTP-2.0/UDP/websocket for reactive communication.
 Check out more at http://rsocket.io
