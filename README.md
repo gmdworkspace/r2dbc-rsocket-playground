@@ -2,6 +2,8 @@
 
 Hola! this project holds a setup for creating a full stack application using R2DBC driver(for MSSQL) with RSocket protocol communication. On the frontend it's a node project with react for user interfaces.
 
+In this playground, We are going to develop a movies list page. The page is going to display initial 15 records and whenever you press show more it's going to fetch you back with 20 more records. You can visualize the data streaming all the way from database till your browser.
+
 ## Why R2DBC? 
 The traditional JDBC drivers are blocking in nature(synchronous) which has down sides on a highly scaled applications. R2DBC on other hand does reactive way for data communication with the databases. 
 
